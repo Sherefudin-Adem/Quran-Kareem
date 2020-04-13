@@ -133,13 +133,10 @@ class Quran extends HTMLElement {
     this.durationLabel = $ce("label");
     this.ayat = $ce('div');
     
-    
-    
     this.durationLabel.className = "duration";
     this.previousButton.className = "changebuttons";
     this.nextButton.className = "changebuttons";
     this.ayat.className = "ayat";
-    
     
     this.checkInput.type = "checkbox";
     this.checkInput.setAttribute('title','التشغيل تلقائيًا');
@@ -169,7 +166,6 @@ class Quran extends HTMLElement {
       optionInput.value = this.ayatFormatNumber(Q + 1);
       
       this.selectInput.append(optionInput);
-     
     }
 
     this.selectInput.onchange = ()=>{
@@ -203,8 +199,6 @@ class Quran extends HTMLElement {
     this.currentLabel.innerText = "00:00:00";
     this.durationLabel.innerText = "00:00:00";
 
-
-//https://xlmnxp.github.io/quran-data/quran/
     this.root.append(this.checkInput, this.playButton, ' ', this.previousButton, this.selectInput, this.nextButton, ' ', this.rangeInput, this.currentLabel, this.durationLabel, this.ayat);
     this.load();
   }
@@ -237,7 +231,7 @@ class Quran extends HTMLElement {
     .then(ayats => {
       this.ayat.innerHTML = ayats;
     })
-    .catch(()=>{
+    .catch(() =>{
       alert('لا يمكن تحميل الأيات')
     });
     
@@ -247,7 +241,7 @@ class Quran extends HTMLElement {
     
     this.played = new Audio(url);
     
-    this.played.addEventListener('canplaythrough', ()=>{
+    this.played.addEventListener('canplaythrough', () =>{
         if(this.checkInput.checked){
           this.pause == false;
           if(this.pause == false){
@@ -260,8 +254,7 @@ class Quran extends HTMLElement {
             this.pause = false;
           }
         }
-    
-    
+
         this.currentLabel.innerText = this.fancyTimeFormat(this.played.currentTime);
         this.durationLabel.innerText = this.fancyTimeFormat(this.played.duration);
         this.rangeInput.max = ~~this.played.duration;
@@ -281,7 +274,7 @@ class Quran extends HTMLElement {
     let mins = ~~((time % 3600) / 60);
     let secs = ~~(time % 60);
 
-    // Output like "1:01" or "4:03:59" or "123:03:59"
+    // Result like "1:01" or "4:03:59" or "123:03:59"
     let timer = "";
 
     if (hrs > 0) {
@@ -297,13 +290,13 @@ class Quran extends HTMLElement {
     return timer;
   }
 
-  ayatFormatNumber(n) {
-    let s = "000";
-    let stn = n.toString();
-    s = s.substring(0, s.length - stn.length);
-    s += stn;
+  ayatFormatNumber(Q) {
+    let m = "000";
+    let stn = Q.toString();
+    m = m.substring(0, m.length - stn.length);
+    m += stn;
 
-    return s;
+    return m;
   }
 }
 customElements.define("quran-kareed", Quran);

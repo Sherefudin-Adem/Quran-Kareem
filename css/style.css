@@ -175,7 +175,6 @@ input[type=range]:focus::-ms-fill-upper {
     display: inline-block;
     font-size: 40px;
     font-family: "Amiri Quran Colored";
-    /* font-family: 'Scheherazade'; */
     word-wrap: break-word;
     height: 100%;
     color: #505;
